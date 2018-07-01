@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+    function fn1(){
+      //1.创建引擎对象
+        var xmlHttp=new XMLHttpRequest();
+        //2.绑定监听
+        xmlHttp.onreadystatechange=function(){
+               //5.接收响应数据
+            if(xmlHttp.readyState==4&&xmlHttp.status==200) {
+                var res = xmlHttp.responseText;
+                document.getElementById("span1").innerHTML=res;
+            }
+        }
+        //3.绑定地址
+        xmlHttp.open("POST","/WEB14/ajax",true);
+        //4.发送请求
+        xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlHttp.send("name=wangwu");
+
+    }
+    function fn2(){
+        //1.创建引擎对象
+        var xmlHttp=new XMLHttpRequest();
+        //2.绑定监听
+        xmlHttp.onreadystatechange=function(){
+            //5.接收响应数据
+            if(xmlHttp.readyState==4&&xmlHttp.status==200) {
+                var res = xmlHttp.responseText;
+                document.getElementById("span2").innerHTML=res;
+            }
+        }
+        //3.绑定地址
+        xmlHttp.open("GET","/WEB14/ajax?name=zhangsan",false);
+        //4.发送请求
+        xmlHttp.send();
+
+    }
+    </script>
+</head>
+<body>
+<input type="button" value="异步访问服务器" onclick="fn1()"><span id="span1"></span>
+<br>
+<input type="button" value="同步访问服务器" onclick="fn2()"><span id="span2"></span>
+<input type="button" value="测试按钮" onclick="alert()">
+</body>
+</html>

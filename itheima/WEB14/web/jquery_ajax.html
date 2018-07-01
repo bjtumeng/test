@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+<script type="text/javascript" >
+    function fn1() {
+        //get方式异步访问服务器
+        $.get(
+            "/WEB14/ajax",
+            {"name":"zhangsan","age":10},
+            function (data) {
+                alert(data.name);
+            },
+            "json"
+        );
+    }
+
+    function fn2() {
+        //post方式异步访问服务器
+    }
+
+    function fn3() {
+        $.ajax({
+                url: "/WEB14/ajax",
+                async: true,
+                data: {"name": "zhangsan"},
+                type: "POST",
+                success: function (data) {
+                    alert(data.name);
+                },
+                error: function (data) {
+                    alert("失败");
+                },
+                dataType: "json",
+
+            }
+        );
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="get方式异步访问服务器" onclick="fn1()"><span id="span1"></span>
+<br>
+<input type="button" value="post方式异步访问服务器" onclick="fn2()"><span id="span2"></span>
+<br>
+<input type="button" value="post方式异步访问服务器" onclick="fn3()">
+</body>
+</html>
