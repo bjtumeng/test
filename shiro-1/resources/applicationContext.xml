@@ -22,7 +22,6 @@
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/> 
     </bean>
-    
     <bean id="authenticator" 
     	class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
     	<property name="authenticationStrategy">
@@ -103,21 +102,18 @@
         	3). logout 登出.
         	4). roles 角色过滤器
         -->
-        <!--  
         <property name="filterChainDefinitions">
             <value>
                 /login.jsp = anon
-                /shiro/login = anon
-                /shiro/logout = logout
-                
-                /user.jsp = roles[user]
-                /admin.jsp = roles[admin]
-                
-                # everything else requires authentication:
-                /** = authc
+                <!--/shiro/login = anon-->
+                <!--/shiro/logout = logout-->
+
+                <!--/user.jsp = roles[user]-->
+                <!--/admin.jsp = roles[admin]-->
+
+                /user.jsp = authc
             </value>
         </property>
-        -->
     </bean>
     
     <!-- 配置一个 bean, 该 bean 实际上是一个 Map. 通过实例工厂方法的方式 -->
