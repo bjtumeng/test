@@ -21,14 +21,20 @@ import java.net.URLEncoder;
  */
 @WebServlet(name = "DownServlet",value="/down")
 public class DownServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          doGet(request,response);
     }
-
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获得文件的名称
-        String filename = request.getParameter("filename");//本来是美女.jpg，因为解码问题变成乱码
-        //获得请求头中的User-Agent
+       //本来是美女.jpg，因为解码问题变成乱码
+        String filename = request.getParameter("filename");
+//       filename = new String(filename.getBytes("iso8859-1"),"utf-8");
+       byte[] bytes = filename.getBytes("iso-8859-1");
+       String file = new String(bytes,"UTF-8");
+       System.out.println(file);
+       //获得请求头中的User-Agent
         String agent = request.getHeader("User-Agent");
         //根据不同浏览器进行不同的编码
         String filenameEncoder = "";

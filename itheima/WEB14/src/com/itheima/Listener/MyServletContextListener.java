@@ -23,18 +23,11 @@ import java.util.TimerTask;
 public class MyServletContextListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
 
-    // Public constructor is required by servlet spec
     public MyServletContextListener() {
     }
 
-    // -------------------------------------------------------
-    // ServletContextListener implementation
-    // -------------------------------------------------------
+  @Override
     public void contextInitialized(ServletContextEvent sce) {
-      /* This method is called when the servlet context is
-         initialized(when the Web application is deployed). 
-         You can initialize servlet context related data here.
-      */
         String currentime ="2018-6-21 22:59:00";
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date =null;
@@ -43,7 +36,6 @@ public class MyServletContextListener implements ServletContextListener,
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         Timer timer=new Timer();
         timer.schedule(new TimerTask() {
@@ -54,45 +46,29 @@ public class MyServletContextListener implements ServletContextListener,
         },date,24*60*60*1000);
         System.out.println("servletContext启动了");
     }
-
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
-      /* This method is invoked when the Servlet Context 
-         (the Web application) is undeployed or 
-         Application Server shuts down.
-      */
         System.out.println("ServletContext销毁了.....");
     }
-
-    // -------------------------------------------------------
-    // HttpSessionListener implementation
-    // -------------------------------------------------------
+    @Override
     public void sessionCreated(HttpSessionEvent se) {
-      /* Session is created. */
-    }
 
+    }
+    @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-      /* Session is destroyed. */
+
     }
 
-    // -------------------------------------------------------
-    // HttpSessionAttributeListener implementation
-    // -------------------------------------------------------
-
+    @Override
     public void attributeAdded(HttpSessionBindingEvent sbe) {
-      /* This method is called when an attribute 
-         is added to a session.
-      */
-    }
 
+    }
+    @Override
     public void attributeRemoved(HttpSessionBindingEvent sbe) {
-      /* This method is called when an attribute
-         is removed from a session.
-      */
-    }
 
+    }
+    @Override
     public void attributeReplaced(HttpSessionBindingEvent sbe) {
-      /* This method is invoked when an attibute
-         is replaced in a session.
-      */
+
     }
 }

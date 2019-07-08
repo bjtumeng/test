@@ -24,17 +24,15 @@ public class sendCookieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
         Date date=new Date();
-//        long time = date.getTime();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd|HH:mm:ss");
         String dates=dateFormat.format(date);
-        System.out.println(dates);
         //第一次访问设置Cookie
         Cookie cookie=new Cookie("lastAccessTime",dates);
         cookie.setMaxAge(60*60*24*365);
         response.addCookie(cookie);
-        System.out.println();
     }
 }

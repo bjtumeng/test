@@ -15,18 +15,15 @@ import java.util.Random;
 
 /**
  * @Author:zhaomeng
- * @Description:
+ * @Description:验证码生成
  * @Date: Created in 23:36 2018/4/25
  * @Modified By:
  */
 @WebServlet(name = "CheckImgServlet",value="/checkimage")
-/**
- * 验证码生成程序
- */
 public class CheckImgServlet extends HttpServlet {
 
     // 集合中保存所有成语
-    private List<String> words = new ArrayList<String>();
+    private List<String> words = new ArrayList<>();
 
     @Override
     public void init() throws ServletException {
@@ -44,39 +41,36 @@ public class CheckImgServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
+   @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // 禁止缓存
         // response.setHeader("Cache-Control", "no-cache");
         // response.setHeader("Pragma", "no-cache");
         // response.setDateHeader("Expires", -1);
-
         int width = 120;
         int height = 30;
-
         // 步骤一 绘制一张内存中图片
         BufferedImage bufferedImage = new BufferedImage(width, height,
                 BufferedImage.TYPE_INT_RGB);
-
         // 步骤二 图片绘制背景颜色 ---通过绘图对象
-        Graphics graphics = bufferedImage.getGraphics();// 得到画图对象 --- 画笔
+       // 得到画图对象 --- 画笔
+        Graphics graphics = bufferedImage.getGraphics();
         // 绘制任何图形之前 都必须指定一个颜色
         graphics.setColor(getRandColor(200, 250));
         graphics.fillRect(0, 0, width, height);
-
         // 步骤三 绘制边框
         graphics.setColor(Color.WHITE);
         graphics.drawRect(0, 0, width - 1, height - 1);
-
         // 步骤四 四个随机数字
         Graphics2D graphics2d = (Graphics2D) graphics;
         // 设置输出字体
         graphics2d.setFont(new Font("宋体", Font.BOLD, 18));
-
-        Random random = new Random();// 生成随机数
+       // 生成随机数
+        Random random = new Random();
         int index = random.nextInt(words.size());
-        String word = words.get(index);// 获得成语
+       // 获得成语
+        String word = words.get(index);
        word=new String(word.getBytes("UTF-8"),"UTF-8");
         // 定义x坐标
         int x = 10;
@@ -88,20 +82,16 @@ public class CheckImgServlet extends HttpServlet {
             int jiaodu = random.nextInt(60) - 30;
             // 换算弧度
             double theta = jiaodu * Math.PI / 180;
-
             // 获得字母数字
             char c = word.charAt(i);
-
             // 将c 输出到图片
             graphics2d.rotate(theta, x, 20);
             graphics2d.drawString(String.valueOf(c), x, 20);
             graphics2d.rotate(-theta, x, 20);
             x += 30;
         }
-
         // 将验证码内容保存session
         request.getSession().setAttribute("checkcode_session", word);
-
         // 步骤五 绘制干扰线
         graphics.setColor(getRandColor(160, 200));
         int x1;
@@ -115,15 +105,12 @@ public class CheckImgServlet extends HttpServlet {
             y2 = random.nextInt(12);
             graphics.drawLine(x1, y1, x1 + x2, x2 + y2);
         }
-
         // 将上面图片输出到浏览器 ImageIO
         graphics.dispose();// 释放资源
-
         //将图片写到response.getOutputStream()中
         ImageIO.write(bufferedImage, "jpg", response.getOutputStream());
-
     }
-
+     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
@@ -131,11 +118,8 @@ public class CheckImgServlet extends HttpServlet {
 
     /**
      * 取其某一范围的color
-     *
-     * @param fc
-     *            int 范围参数1
-     * @param bc
-     *            int 范围参数2
+     * @param fc  int 范围参数1
+     * @param bc  int 范围参数2
      * @return Color
      */
     private Color getRandColor(int fc, int bc) {

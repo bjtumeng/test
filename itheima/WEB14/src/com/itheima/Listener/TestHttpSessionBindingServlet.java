@@ -19,16 +19,17 @@ public class TestHttpSessionBindingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      doGet(request,response);
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
      Person person=new Person();
      person.setId(1);
      person.setName("zhangsan");
      person.setEmail("zhangsan@zhangsan.com");
-        HttpSession session = request.getSession();
-        session.setAttribute("person",person);
-        session.removeAttribute("person");
-
-
+     HttpSession session = request.getSession();
+     //person被绑定到session域中
+     session.setAttribute("person",person);
+     //person从session域中解绑
+     session.removeAttribute("person");
     }
 }

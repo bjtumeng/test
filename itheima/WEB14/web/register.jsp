@@ -21,13 +21,10 @@ css/bootstrap.min.css" type="text/css" />
 					{"username":usernameInfo},
 					function (data) {
 						var isExit=data.isExit;
-//						var usernameIn="";
 						if(isExit){
-//                            usernameIn="用户名重复";
                             $("#checkText").html("用户名重复");
 						}else{
                             $("#checkText").html("用户名可以使用");
-//                            usernameIn="用户名可以使用";
 						}
                     },
 					"json"

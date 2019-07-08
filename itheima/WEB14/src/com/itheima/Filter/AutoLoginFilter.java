@@ -19,10 +19,11 @@ import java.sql.SQLException;
  */
 @WebFilter(filterName = "AutoLoginFilter",urlPatterns = {"/*"})
 public class AutoLoginFilter implements Filter {
-    public void destroy() {
-    }
-
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+    @Override
+    public void destroy() { }
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws ServletException, IOException {
         //1.获得cookie中的username和password
         HttpServletRequest request=(HttpServletRequest)req;
         HttpSession session = request.getSession();
@@ -52,9 +53,7 @@ public class AutoLoginFilter implements Filter {
          }
         chain.doFilter(req, resp);
     }
-
-    public void init(FilterConfig config) throws ServletException {
-
-    }
+@Override
+    public void init(FilterConfig config) throws ServletException { }
 
 }

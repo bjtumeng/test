@@ -2,6 +2,7 @@ package com.itheima.Listener;
 
 import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionEvent;
+import java.io.Serializable;
 
 /**
  * @Author:zhaomeng
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpSessionEvent;
  * @Date: Created in 11:22 2018/6/23
  * @Modified By:
  */
-public class Customer {
+public class Customer implements HttpSessionActivationListener, Serializable {
    private  int id;
    private String username;
 
@@ -65,5 +66,12 @@ public class Customer {
    private String email;
    private String realName;
    private String birthday;
-
+    @Override
+    public void sessionWillPassivate(HttpSessionEvent se) {
+        System.out.println("customer被钝化了");
+    }
+    @Override
+    public void sessionDidActivate(HttpSessionEvent se) {
+        System.out.println("customer被活化了");
+    }
 }

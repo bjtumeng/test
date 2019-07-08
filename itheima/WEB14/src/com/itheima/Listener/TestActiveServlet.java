@@ -16,13 +16,16 @@ import java.io.IOException;
  */
 @WebServlet(name = "TestActiveServlet",value="/testActivate2")
 public class TestActiveServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Customer customer = (Customer)session.getAttribute("Customer");
+        System.out.println(customer.getUsername());
+    }
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    doGet(request,response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(); Customer customer = (Customer)session.getAttribute("Customer");
-//        System.out.println(customer.getName());
-//
-    }
 }

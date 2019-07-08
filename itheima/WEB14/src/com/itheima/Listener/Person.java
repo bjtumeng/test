@@ -1,5 +1,6 @@
 package com.itheima.Listener;
 
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
@@ -12,12 +13,12 @@ import javax.servlet.http.HttpSessionBindingListener;
 public class Person implements HttpSessionBindingListener {
     @Override
     public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
-        System.out.println("session对象被绑定了");
+        System.out.println("person被绑定到session域中"+httpSessionBindingEvent.getName());
     }
 
     @Override
     public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
-        System.out.println("session对象被解绑了");
+        System.out.println("person从session域解绑了"+httpSessionBindingEvent.getName());
     }
     private int id;
 

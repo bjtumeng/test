@@ -39,8 +39,9 @@ body {
 		</div>
        <c:forEach items="${PageBean.productList}" var="product">
 		   <div class="col-md-2" style="height: 250px">
-			   <a href="product_info.htm"> <img src="${pageContext.request.contextPath}/${product.pimage}"
-												width="170" height="170" style="display: inline-block;">
+			   <a href="product_info.htm">
+				   <img src="${pageContext.request.contextPath}/${product.pimage}"
+						width="170" height="170" style="display: inline-block;">
 			   </a>
 			   <p>
 				   <a href="product_info.html" style='color: green'>${product.pname}</a>

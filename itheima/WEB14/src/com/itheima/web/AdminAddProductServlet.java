@@ -25,10 +25,11 @@ import java.util.UUID;
  */
 @WebServlet(name = "AdminAddProductServlet",value="/adminProduct")
 public class AdminAddProductServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      doGet(request,response);
     }
-
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          //1.收集网页的数据
         Map<String, String[]> parameterMap = request.getParameterMap();

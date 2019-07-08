@@ -36,6 +36,7 @@ public class TimerListener implements ServletContextListener,
     // -------------------------------------------------------
     // ServletContextListener implementation
     // -------------------------------------------------------
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {

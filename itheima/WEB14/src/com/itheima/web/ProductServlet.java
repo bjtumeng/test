@@ -24,7 +24,7 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request,response);
     }
-
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService=new ProductService();
         PageBean<Product> PageBean=null;
@@ -41,6 +41,5 @@ public class ProductServlet extends HttpServlet {
         }
         request.setAttribute("PageBean",PageBean);
         request.getRequestDispatcher("/product_list.jsp").forward(request,response);
-
     }
 }

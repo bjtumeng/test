@@ -16,10 +16,11 @@ import java.io.IOException;
  */
 @WebServlet(name = "TestListenerServlet",value="/test")
 public class TestListenerServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   doGet(request,response);
+         doGet(request,response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = this.getServletContext();
         servletContext.setAttribute("name","zhangsan");

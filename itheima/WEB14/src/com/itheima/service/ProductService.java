@@ -21,8 +21,8 @@ public class ProductService {
     }
    //封装一个PageBean
     public PageBean findAllPageBean(int currentCount,int currentPage) throws SQLException {
-     PageBean pageBean=new PageBean();
-       //总条数
+        PageBean pageBean=new PageBean();
+         //总条数
         ProductDao dao=new ProductDao();
         int totalCount = dao.getTotalCount();
         pageBean.setTotalCount(totalCount);
@@ -32,11 +32,13 @@ public class ProductService {
         }else{
             pageBean.setTotalPage((totalCount/currentCount)+1);
         }
-     pageBean.setCurrentCount(currentCount);
-     pageBean.setCurrentPage(currentPage);
-     int index=(currentPage-1)*currentCount;
-     List<Product> productList = dao.findProductListForPageBean(index,currentCount);
-     pageBean.setProductList(productList);
+        //每页显示条数
+       pageBean.setCurrentCount(currentCount);
+       pageBean.setCurrentPage(currentPage);
+       //起始页码
+       int index=(currentPage-1)*currentCount;
+       List<Product> productList = dao.findProductListForPageBean(index,currentCount);
+       pageBean.setProductList(productList);
         return pageBean;
     }
 

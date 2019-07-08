@@ -13,8 +13,6 @@ public class MyAnnoParser {
         Class<MyAnnoTest> classzz = MyAnnoTest.class;
         Method show = classzz.getMethod("show");
         MyAnno annotation = show.getAnnotation(MyAnno.class);
-        System.out.println(annotation.name());
-
-
+        System.out.println(annotation.age());
     }
 }

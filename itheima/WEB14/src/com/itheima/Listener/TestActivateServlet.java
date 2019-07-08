@@ -16,16 +16,18 @@ import java.io.IOException;
  */
 @WebServlet(name = "TestActivateServlet",value="/testActivate")
 public class TestActivateServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Customer customer = new Customer();
+        customer.setId(1);
+        customer.setUsername("zhangsan");
+        HttpSession session = request.getSession();
+        session.setAttribute("Customer", customer);
+    }
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Customer customer = new Customer();
-//        customer.setId("1");
-//        customer.setName("zhangsan");
-        HttpSession session = request.getSession();
-        session.setAttribute("Customer", customer);
-        System.out.println("Customer被放到Session域中");
-    }
 }

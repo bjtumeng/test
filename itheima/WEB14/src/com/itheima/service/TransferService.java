@@ -18,11 +18,8 @@ public class TransferService {
     public Boolean transfor(String in, String out, double money) {
         TransferDao transferDao =new TransferDao();
        Boolean isTransferSucces=true;
-//        Connection conn=null;
         try {
             //为了获得相同的Connection
-//            conn= DataSourceUtils.getConnection();
-//            conn.setAutoCommit(false);
             //开启事务
             MyDataSourceUtils.startTransaction();
             //1.转出方法
@@ -44,7 +41,6 @@ public class TransferService {
                 e.printStackTrace();
             }
         }
-
        return isTransferSucces;
     }
 
